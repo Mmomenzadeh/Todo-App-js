@@ -30,6 +30,20 @@ const createToDo = (TodoData) => {
       syncLocalSorage(todoItem);
     }
   };
+
+  //Edite todo with prompt
+  row.addEventListener("dblclick", () => {
+    const newTodo = prompt("Write Your new todo");
+    title.innerHTML = newTodo;
+    todoItem = todoItem.map((item) => {
+      if (item.id === TodoData.id) {
+        return { ...item, todotitle: newTodo };
+      } else {
+        return item;
+      }
+    });
+    syncLocalSorage(todoItem);
+  });
   /// appends:
   row.append(title, deleteBtn);
   OlContainer.appendChild(row);
@@ -49,8 +63,6 @@ document.querySelector("form").addEventListener("submit", (e) => {
     alert("Value cannot be empty!");
     return;
   }
-  /// create todo :
-  createToDo(inputValue);
 
   /// Data stabilization : todo storage with localStorage
   const id = (Math.random() + 1).toString(36).substring(7);
@@ -60,4 +72,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
   };
   todoItem.push(data);
   syncLocalSorage(todoItem);
+
+  /// create todo :
+  createToDo(data);
 });
