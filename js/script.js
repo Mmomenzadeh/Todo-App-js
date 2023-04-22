@@ -6,11 +6,10 @@ let todoItem = localStorage.hasOwnProperty("todo")
   ? JSON.parse(localStorage.getItem("todo"))
   : [];
 
-
 /// Create sync function to sync code with local storage
-const syncLocalSorage = (todoList)=>{
-    localStorage.setItem("todo" , JSON.stringify(todoList))
-}
+const syncLocalSorage = (todoList) => {
+  localStorage.setItem("todo", JSON.stringify(todoList));
+};
 
 /// create ToDo function :
 const createToDo = (TodoData) => {
@@ -23,13 +22,13 @@ const createToDo = (TodoData) => {
 
   // delete todo process
   deleteBtn.onclick = function () {
-    row.remove();
+    if (confirm("Delete this Row?")) {
+      row.remove();
 
-    // delete todo from localSorage : 
-    todoItem = todoItem.filter((item) => item.id !== TodoData.id);
-    syncLocalSorage(todoItem)
-
-   
+      // delete todo from localSorage :
+      todoItem = todoItem.filter((item) => item.id !== TodoData.id);
+      syncLocalSorage(todoItem);
+    }
   };
   /// appends:
   row.append(title, deleteBtn);
@@ -60,6 +59,5 @@ document.querySelector("form").addEventListener("submit", (e) => {
     todotitle: inputValue,
   };
   todoItem.push(data);
-  syncLocalSorage(todoItem)
-
+  syncLocalSorage(todoItem);
 });
