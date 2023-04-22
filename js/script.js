@@ -6,6 +6,12 @@ let todoItem = localStorage.hasOwnProperty("todo")
   ? JSON.parse(localStorage.getItem("todo"))
   : [];
 
+
+/// Create sync function to sync code with local storage
+const syncLocalSorage = (todoList)=>{
+    localStorage.setItem("todo" , JSON.stringify(todoList))
+}
+
 /// create ToDo function :
 const createToDo = (TodoData) => {
   /// create todo row and row title ,row deleteButton
@@ -21,7 +27,7 @@ const createToDo = (TodoData) => {
 
     // delete todo from localSorage : 
     todoItem = todoItem.filter((item) => item.id !== TodoData.id);
-    localStorage.setItem("todo" , JSON.stringify(todoItem))
+    syncLocalSorage(todoItem)
 
    
   };
@@ -54,5 +60,6 @@ document.querySelector("form").addEventListener("submit", (e) => {
     todotitle: inputValue,
   };
   todoItem.push(data);
-  localStorage.setItem("todo", JSON.stringify(todoItem));
+  syncLocalSorage(todoItem)
+
 });
