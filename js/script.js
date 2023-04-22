@@ -1,6 +1,10 @@
 const OlContainer = document.createElement("ol");
 document.querySelector(".items").appendChild(OlContainer);
 
+/// get tododata from localStorage :
+let todoItem = localStorage.hasOwnProperty("todo")
+  ? JSON.parse(localStorage.getItem("todo"))
+  : [];
 
 /// create ToDo function :
 const createToDo = (TodoData) => {
@@ -9,24 +13,25 @@ const createToDo = (TodoData) => {
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete";
   const title = document.createElement("h3");
-  title.innerHTML = TodoData;
+  title.innerHTML = TodoData.todotitle;
 
-  // delete todo
+  // delete todo process
   deleteBtn.onclick = function () {
     row.remove();
+
+    // delete todo from localSorage : 
+    todoItem = todoItem.filter((item) => item.id !== TodoData.id);
+    localStorage.setItem("todo" , JSON.stringify(todoItem))
+
+   
   };
   /// appends:
   row.append(title, deleteBtn);
   OlContainer.appendChild(row);
 };
 
-/// get tododata from localStorage :
-const todoItem = localStorage.hasOwnProperty("todo")
-  ? JSON.parse(localStorage.getItem("todo"))
-  : [];
-
 todoItem.forEach((todo) => {
-  createToDo(todo.todotitle);
+  createToDo(todo);
 });
 
 // Management of sending data in the form
