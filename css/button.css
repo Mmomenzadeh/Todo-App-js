@@ -1,6 +1,7 @@
 .container button {
   appearance: button;
-  background-color: #0f633c;
+  /* background-color: #0f633c; */
+  background-color: #9e586c;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
@@ -32,7 +33,9 @@
 
 .container button:after {
   background-clip: padding-box;
-  background-color: #198754;
+  /* background-color: #198754; */
+  background-color: #C06C84;
+
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;

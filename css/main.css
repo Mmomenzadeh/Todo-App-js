@@ -4,8 +4,10 @@
 
 body {
   font-family: 'Share Tech Mono', monospace;
-  background-color: pink;
-  color: #0008;
+  background: #355C7D;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }
 
 #app {
@@ -21,6 +23,7 @@ body {
 }
 
 h1 {
+  color: #eee;
   text-align: center;
   font-weight: bolder;
   font-size: 50px;
@@ -30,9 +33,11 @@ h1 {
 div.items, form {
   box-shadow: 0 .5rem 1rem #00000026 !important;
   padding: 10px;
+  /* background-color: #fff7; */
   background-color: #fff;
   border-radius: 1rem;
   margin-top: 50px;
+  color: #838383;
 }
 
 form input {
