@@ -35,13 +35,18 @@ const createToDo = (TodoData) => {
   row.addEventListener("dblclick", () => {
     const newTodo = prompt("Write Your new todo");
     title.innerHTML = newTodo;
-    todoItem = todoItem.map((item) => {
-      if (item.id === TodoData.id) {
-        return { ...item, todotitle: newTodo };
-      } else {
-        return item;
-      }
-    });
+
+    // todoItem = todoItem.map((item) => {
+    //   if (item.id === TodoData.id) {
+    //     return { ...item, todotitle: newTodo };
+    //   } else {
+    //     return item;
+    //   }
+    // });
+
+    /// because object is passed by refrence
+    TodoData.todotitle = newTodo;
+
     syncLocalSorage(todoItem);
   });
   /// appends:
